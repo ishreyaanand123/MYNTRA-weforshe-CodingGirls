@@ -4,9 +4,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Define correct pairings (this could be dynamic based on the outfit)
     const correctPairings = {
-        bag: 'Tote Bag',
-        shoes: 'Sneakers',
-        jewelry: 'Statement Necklace'
+        bag: 'Brown designer bag',
+        shoes: 'Black Heels',
+        jewel: 'Golden necklace'
     };
 
     accessories.forEach(accessory => {
@@ -65,15 +65,15 @@ document.addEventListener('DOMContentLoaded', () => {
         resultText += `Performance: ${performanceMessage}\n`;
 
         // Additional feedback on pairing
-        let feedbackText = '';
-        for (const type of requiredAccessoryTypes) {
-            if (selectedAccessories[type] !== correctPairings[type]) {
-                feedbackText += `\nTip: For the ${type}, ${correctPairings[type]} might be a better match.`;
-            }
-        }
-        if (feedbackText) {
-            resultText += `\nStyling Tips:${feedbackText}`;
-        }
+        // let feedbackText = '';
+        // for (const type of requiredAccessoryTypes) {
+        //     if (selectedAccessories[type] !== correctPairings[type]) {
+        //         feedbackText += `\nTip: For the ${type}, ${correctPairings[type]} might be a better match.`;
+        //     }
+        // }
+        // if (feedbackText) {
+        //     resultText += `\nStyling Tips:${feedbackText}`;
+        // }
 
         // Update result text on the page
         document.getElementById('result').innerText = resultText;

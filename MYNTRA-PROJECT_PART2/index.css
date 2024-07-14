@@ -81,17 +81,17 @@ body {
     font-size :3rem;
 }
 .selected {
-    box-shadow: 0 10px 10px rgb(0, 0, 0);
+    box-shadow: 0 10px 10px rgb(231, 33, 33);
     /* Add any other styles you want for selected items */
 }
 #result{
     height: auto;
-    
     text-align: center;
-    font-family: Georgia, 'Times New Roman', Times, serif;
-    color: rgb(255, 255, 255);
-    font-size: 1.4rem;
-
+    font-family: sans-serif;
+    color: #ff3f6c;
+    font-size: 1rem;
+    box-shadow: 0 0 10px rgba(255, 28, 28, 0.1);
+   
 }
 header {
     background-color: var(--myntra-white);
