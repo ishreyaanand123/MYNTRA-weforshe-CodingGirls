@@ -1,5 +1,3 @@
-// myntra-script.js
-
 function showPredictTrends() {
     const gameArea = document.getElementById('game-area');
     gameArea.innerHTML = `
@@ -13,6 +11,7 @@ function showPredictTrends() {
             <option value="retro">Retro Revival</option>
         </select>
         <button onclick="submitPrediction()" class="btn">Submit Prediction</button>
+        <div id="message"></div>
     `;
     gameArea.classList.remove('hidden');
 }
@@ -29,6 +28,7 @@ function showCreateOutfits() {
         </div>
         <div id="outfit-canvas" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
         <button onclick="saveOutfit()" class="btn">Save Outfit</button>
+        <div id="message"></div>
     `;
     gameArea.classList.remove('hidden');
 }
@@ -44,16 +44,20 @@ function showLeaderboard() {
             <li>Player4 - 850 points</li>
             <li>Player5 - 800 points</li>
         </ol>
+        <div id="message"></div>
     `;
     gameArea.classList.remove('hidden');
 }
 
 function submitPrediction() {
     const prediction = document.getElementById('trend-prediction').value;
+    const messageElement = document.getElementById('message');
     if (prediction) {
-        alert(`Your prediction (${prediction}) has been submitted!`);
+        messageElement.textContent = `Your prediction (${prediction}) has been submitted!`;
+        messageElement.style.color = "green";
     } else {
-        alert('Please select a trend before submitting.');
+        messageElement.textContent = 'Please select a trend before submitting.';
+        messageElement.style.color = "red";
     }
 }
 
@@ -72,5 +76,27 @@ function drop(ev) {
 }
 
 function saveOutfit() {
-    alert('Your outfit has been saved!');
+    const messageElement = document.getElementById('message');
+    messageElement.textContent = 'Your outfit has been saved!';
+    messageElement.style.color = "green";
 }
+
+// CSS styles to add to your CSS file or within a <style> tag
+const style = document.createElement('style');
+style.innerHTML = `
+    .btn {
+        padding: 10px 20px;
+        font-size: 16px;
+        color: #fff;
+        background-color: #ff3f6c;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-top: 20px;
+    }
+    #message {
+        margin-top: 20px;
+        font-size: 14px;
+    }
+`;
+document.head.appendChild(style);

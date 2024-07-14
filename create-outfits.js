@@ -42,9 +42,35 @@ document.addEventListener('DOMContentLoaded', () => {
                         <div class="option" onclick="toggleOption(${index})">${option}</div>
                     `).join('')}
                 </div>
-                <button onclick="submitOutfit()">Submit Outfit</button>
+                <button class="submit-button" onclick="submitOutfit()">Submit Outfit</button>
+                <div id="message"></div>
             </div>
         `;
+        addButtonStyles();
+        addOptionStyles();
+    }
+
+    function addButtonStyles() {
+        const button = document.querySelector('.submit-button');
+        button.style.padding = "10px 20px";
+        button.style.fontSize = "16px";
+        button.style.color = "#fff";
+        button.style.backgroundColor = "#ff3f6c";
+        button.style.border = "none";
+        button.style.borderRadius = "5px";
+        button.style.cursor = "pointer";
+        button.style.marginTop = "20px";
+    }
+
+    function addOptionStyles() {
+        const options = document.querySelectorAll('.option');
+        options.forEach(option => {
+            option.style.padding = "10px";
+            option.style.border = "1px solid #ccc";
+            option.style.borderRadius = "5px";
+            option.style.cursor = "pointer";
+            option.style.marginBottom = "10px";
+        });
     }
 
     let selectedOptions = [];
@@ -63,22 +89,36 @@ document.addEventListener('DOMContentLoaded', () => {
     window.submitOutfit = () => {
         const correctOptions = questions[currentQuestion].correct;
         const isCorrect = correctOptions.every(i => selectedOptions.includes(i)) && selectedOptions.length === correctOptions.length;
-        
+        const messageElement = document.getElementById('message');
+
         if (isCorrect) {
             score++;
-            alert("Great outfit creation!");
+            messageElement.textContent = "Great outfit creation!";
+            messageElement.style.color = "green";
         } else {
-            alert("Not quite right. Try again!");
+            messageElement.textContent = "Not quite right. Try again!";
+            messageElement.style.color = "red";
         }
 
-        currentQuestion++;
-        selectedOptions = [];
-        if (currentQuestion < questions.length) {
-            displayQuestion();
-        } else {
-            gameArea.innerHTML = `<h2>Challenge Complete!</h2><p>You've created all outfits.</p><p>Your score: ${score}/${questions.length}</p>`;
-        }
+        setTimeout(() => {
+            currentQuestion++;
+            selectedOptions = [];
+            if (currentQuestion < questions.length) {
+                displayQuestion();
+            } else {
+                gameArea.innerHTML = `<h2>Challenge Complete!</h2><p>You've created all outfits.</p><p>Your score: ${score}/${questions.length}</p>`;
+            }
+        }, 2000); // Delay for 2 seconds before moving to the next question
     };
 
     displayQuestion();
 });
+
+// Add this CSS to your styles
+const style = document.createElement('style');
+style.innerHTML = `
+    .option.selected {
+        box-shadow: 0 0 10px red;
+    }
+`;
+document.head.appendChild(style);

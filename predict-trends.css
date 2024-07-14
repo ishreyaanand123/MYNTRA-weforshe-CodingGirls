@@ -1,0 +1,15 @@
+.selected {
+    box-shadow: 0 0 10px red;
+}
+
+#message {
+    margin-top: 20px;
+    font-size: 21px;
+}
+
+.option {
+    cursor: pointer;
+    padding: 10px;
+    border: 1px solid #ccc;
+    margin: 5px 0;
+}

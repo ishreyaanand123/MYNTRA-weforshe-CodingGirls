@@ -39,26 +39,36 @@ document.addEventListener('DOMContentLoaded', () => {
                 <p>${question.question}</p>
                 <div class="options">
                     ${question.options.map((option, index) => `
-                        <div class="option" onclick="selectOption(${index})">${option}</div>
+                        <div class="option" onclick="selectOption(${index}, this)">${option}</div>
                     `).join('')}
                 </div>
+                <div id="message"></div>
             </div>
         `;
     }
 
-    window.selectOption = (index) => {
+    window.selectOption = (index, element) => {
+        const messageElement = document.getElementById('message');
+        document.querySelectorAll('.option').forEach(option => option.classList.remove('selected'));
+        element.classList.add('selected');
+
         if (index === questions[currentQuestion].correct) {
             score++;
-            alert("Correct!");
+            messageElement.textContent = "Correct!";
+            messageElement.style.color = "green";
         } else {
-            alert("Incorrect. The correct answer was: " + questions[currentQuestion].options[questions[currentQuestion].correct]);
+            messageElement.textContent = `Incorrect. The correct answer was: ${questions[currentQuestion].options[questions[currentQuestion].correct]}`;
+            messageElement.style.color = "red";
         }
-        currentQuestion++;
-        if (currentQuestion < questions.length) {
-            displayQuestion();
-        } else {
-            gameArea.innerHTML = `<h2>Game Over!</h2><p>You've completed all questions.</p><p>Your score: ${score}/${questions.length}</p>`;
-        }
+
+        setTimeout(() => {
+            currentQuestion++;
+            if (currentQuestion < questions.length) {
+                displayQuestion();
+            } else {
+                gameArea.innerHTML = `<h2>Game Over!</h2><p>You've completed all questions.</p><p>Your score: ${score}/${questions.length}</p>`;
+            }
+        }, 2000); // Delay for 2 seconds before moving to the next question
     };
 
     displayQuestion();
