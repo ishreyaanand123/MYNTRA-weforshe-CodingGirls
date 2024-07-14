@@ -1,0 +1,143 @@
+*{
+    background-color: white;
+    color: #ff3f6c;
+    font-size: large;
+}
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   
+    margin: 20px;
+    padding: 20px;
+    /* background-color: #f0f0f0; */
+
+}
+
+.game-container {
+    /* background-color: white; */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.outfits, .accessories {
+    margin-bottom: 20px;
+}
+
+.outfits {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.dress{
+    min-height: 300px;
+    min-width: 250px;
+}
+
+.outfits .outfit img, .accessories .accessory img {
+    max-width: 100px;
+    border-radius: 10px;
+}
+
+/* .accessories {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+} */
+
+.accessory {
+    cursor: pointer;
+    transition: transform 0.2s;
+    margin: 10px;
+}
+
+.accessory:hover {
+    transform: scale(1.1);
+}
+
+#submit {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #ff3f6c;
+    color: white;
+    cursor: pointer;
+}
+
+#result {
+    margin-top: 20px;
+    font-weight: bold;
+}
+.bags,.shoes,.jewel{
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+}
+.heading{
+    text-align: center;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size :3rem;
+}
+.selected {
+    box-shadow: 0 10px 10px rgb(0, 0, 0);
+    /* Add any other styles you want for selected items */
+}
+#result{
+    height: auto;
+    
+    text-align: center;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    color: rgb(255, 255, 255);
+    font-size: 1.4rem;
+
+}
+header {
+    background-color: var(--myntra-white);
+    box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.05);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.logo {
+    font-size: 28px;
+    font-weight: bold;
+    color: var(--myntra-pink);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+nav ul {
+    list-style-type: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li {
+    margin-left: 30px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: var(--myntra-gray);
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 14px;
+    letter-spacing: 0.5px;
+    transition: color 0.3s ease;
+}
+
+nav ul li a:hover {
+    color: var(--myntra-pink);
+}
