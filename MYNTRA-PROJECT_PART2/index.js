@@ -29,12 +29,12 @@ document.addEventListener('DOMContentLoaded', () => {
         const selectedAccessoryTypes = Object.keys(selectedAccessories);
 
         if (selectedAccessoryTypes.length !== requiredAccessoryTypes.length) {
-            alert('Please select one of each accessory type.');
+            document.getElementById('result').innerText = 'Please select one of each accessory type.';
             return;
         }
 
         let totalCoins = 0;
-        let correctPairings = 0;
+        let correctCount = 0;
         let resultText = 'You selected accessories:\n';
 
         for (const type of requiredAccessoryTypes) {
@@ -43,19 +43,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (selected === correctPairings[type]) {
                 totalCoins += 5; // 5 coins for a perfect match
-                correctPairings++;
+                correctCount++;
             } else {
                 totalCoins += 2; // 2 coins for participating
             }
         }
 
-        // Alert for coins earned
-        alert(`You earned ${totalCoins} coins!`);
+        // Build the result text
+        resultText += `\nYou earned ${totalCoins} coins!\n`;
+        resultText += `You got ${correctCount} out of 3 pairings correct!\n`;
 
-        // Alert for correctness
-        alert(`You got ${correctPairings} out of 3 pairings correct!`);
-
-        // Alert for performance
+        // Performance message
         let performanceMessage;
         if (totalCoins === 15) {
             performanceMessage = "Perfect pairing! You're a fashion expert!";
@@ -64,7 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             performanceMessage = "Nice try! Keep exploring different fashion combinations.";
         }
-        alert(performanceMessage);
+        resultText += `Performance: ${performanceMessage}\n`;
 
         // Additional feedback on pairing
         let feedbackText = '';
@@ -74,13 +72,10 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
         if (feedbackText) {
-            alert(`Styling Tips:${feedbackText}`);
+            resultText += `\nStyling Tips:${feedbackText}`;
         }
 
         // Update result text on the page
-        resultText += `\nTotal Coins Earned: ${totalCoins}\n`;
-        resultText += `Correct Pairings: ${correctPairings} out of 3\n`;
-        resultText += `Performance: ${performanceMessage}`;
         document.getElementById('result').innerText = resultText;
     });
 });
