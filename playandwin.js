@@ -177,7 +177,7 @@ function checkAnswer(selectedIndex) {
     const question = trendQuestions[currentQuestion];
     if (selectedIndex === question.correct) {
         score++;
-        updateUserCoins(5); // Award 5 coins for correct answer
+        updateUserCoins(5); 
     }
     currentQuestion++;
     loadQuestion();
@@ -240,7 +240,7 @@ function drop(ev) {
 
 function saveOutfit() {
     alert('Your outfit has been saved!');
-    updateUserCoins(10); // Award 10 coins for saving an outfit
+    updateUserCoins(10); 
 }
 
 function showPairingChallenges() {
@@ -288,7 +288,7 @@ function submitPairing() {
     
     if (arraysEqual(selectedOptions.sort(), challenge.correct.sort())) {
         score++;
-        updateUserCoins(5); // Award 5 coins for correct pairing
+        updateUserCoins(5); 
     }
     
     currentPairingChallenge++;
@@ -312,6 +312,33 @@ function arraysEqual(a, b) {
     }
     return true;
 }
+// function checkGameAvailability(gameId) {
+//     const lastPlayed = localStorage.getItem(gameId);
+//     if (lastPlayed) {
+//         const lastPlayedDate = new Date(parseInt(lastPlayed));
+//         const today = new Date();
+//         if (lastPlayedDate.toDateString() === today.toDateString()) {
+//             document.querySelector(`#${gameId} .overlay`).classList.add('active');
+//             document.querySelector(`#${gameId} .btn`).style.pointerEvents = 'none';
+//         }
+//     }
+// }
+
+// function setGamePlayed(gameId) {
+//     localStorage.setItem(gameId, Date.now().toString());
+// }
+
+// document.addEventListener('DOMContentLoaded', () => {
+//     const games = ['predictTrends', 'pairingChallenges', 'styleShowdown'];
+//     games.forEach(game => {
+//         checkGameAvailability(game);
+//         document.querySelector(`#${game} .btn`).addEventListener('click', (e) => {
+//             e.preventDefault();
+//             setGamePlayed(game);
+//             window.location.href = e.target.href;
+//         });
+//     });
+// });
 
 // Initialize the app
 signIn();

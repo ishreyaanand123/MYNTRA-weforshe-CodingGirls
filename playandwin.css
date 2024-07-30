@@ -1,4 +1,38 @@
 
+.play-card {
+    position: relative;
+}
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(255, 255, 255, 0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    padding: 20px;
+    font-family: 'Assistant', sans-serif;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+.overlay.active {
+    opacity: 1;
+    pointer-events: all;
+}
+.overlay h3 {
+    font-size: 24px;
+    color: #ff3f6c;
+    margin-bottom: 10px;
+}
+.overlay p {
+    font-size: 18px;
+    color: #333;
+}
 .container {
     max-width: 1200px;
     margin: 0 auto;

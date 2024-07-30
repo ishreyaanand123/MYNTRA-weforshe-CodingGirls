@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Style Showdown - Myntra</title>
+    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #ff3f6c;
+            --secondary-color: #20bdff;
+            --background-color: #f5f5f5;
+            --text-color: #333;
+            --accent-color: #ffd700;
+        }
+
+        body {
+            font-family: 'Assistant', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 1rem;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        nav ul {
+            list-style-type: none;
+            display: flex;
+            gap: 1rem;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        h1 {
+            color: var(--primary-color);
+            text-align: center;
+        }
+
+        .game-container {
+            background-color: white;
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-top: 2rem;
+        }
+
+        .outfit-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .outfit-section {
+            border: 2px solid var(--secondary-color);
+            border-radius: 8px;
+            padding: 1.5rem;
+        }
+
+        .item-selection {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .item {
+            width: 120px;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .item.selected {
+            border: 3px solid var(--accent-color);
+        }
+
+        .timer {
+            font-size: 2rem;
+            font-weight: bold;
+            text-align: center;
+            margin: 2rem 0;
+            color: var(--primary-color);
+        }
+
+        .submit-btn {
+            display: block;
+            width: 200px;
+            margin: 2rem auto;
+            padding: 1rem;
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 4px;
+            border: none;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            background-color: var(--secondary-color);
+        }
+
+        #result {
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-top: 2rem;
+            color: var(--primary-color);
+        }
+
+        .searching-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .searching-message {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .countdown {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-top: 1rem;
+            color: var(--primary-color);
+        }
+        @keyframes firework {
+            0% { transform: translate(var(--x), var(--initialY)); width: var(--initialSize); opacity: 1; }
+            50% { width: 0.5vmin; opacity: 1; }
+            100% { width: var(--finalSize); opacity: 0; }
+        }
+
+        .firework,
+        .firework::before,
+        .firework::after {
+            --initialSize: 0.5vmin;
+            --finalSize: 45vmin;
+            --particleSize: 0.2vmin;
+            --color1: yellow;
+            --color2: khaki;
+            --color3: white;
+            --color4: lime;
+            --color5: gold;
+            --color6: mediumseagreen;
+            --y: -30vmin;
+            --x: -50%;
+            --initialY: 60vmin;
+            content: "";
+            animation: firework 2s infinite;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, var(--y));
+            width: var(--initialSize);
+            aspect-ratio: 1;
+            background: 
+                radial-gradient(circle, var(--color1) var(--particleSize), #0000 0) 0% 0%,
+                radial-gradient(circle, var(--color2) var(--particleSize), #0000 0) 100% 0%,
+                radial-gradient(circle, var(--color3) var(--particleSize), #0000 0) 100% 100%,
+                radial-gradient(circle, var(--color4) var(--particleSize), #0000 0) 0% 100%,
+                radial-gradient(circle, var(--color5) var(--particleSize), #0000 0) 50% 0%,
+                radial-gradient(circle, var(--color6) var(--particleSize), #0000 0) 50% 100%,
+                radial-gradient(circle, var(--color1) var(--particleSize), #0000 0) 0% 50%,
+                radial-gradient(circle, var(--color2) var(--particleSize), #0000 0) 100% 50%,
+                radial-gradient(circle, var(--color3) var(--particleSize), #0000 0) 50% 50%;
+            background-size: var(--initialSize) var(--initialSize);
+            background-repeat: no-repeat;
+        }
+
+        .firework::before {
+            --x: -50%;
+            --y: -50%;
+            --initialY: -50%;
+        }
+
+        .firework::after {
+            --x: -50%;
+            --y: -50%;
+            --initialY: -50%;
+            animation-delay: -0.25s;
+        }
+
+        .firework-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">Myntra</div>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Categories</a></li>
+                <li><a href="#">Studio</a></li>
+                <li><a href="#">Explore</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main class="container">
+        <h1>Style Showdown</h1>
+        <button id="startPlaying" class="submit-btn">Start Playing</button>
+        <div class="game-container" style="display: none;">
+            <h2>Create the best outfit for: <span id="scenario"></span></h2>
+            <div class="timer" id="timer">1:00</div>
+            <div class="outfit-grid">
+                <div class="outfit-section">
+                    <h3>Your Outfit</h3>
+                    <div class="item-selection" id="playerOutfit"></div>
+                </div>
+                <div class="outfit-section">
+                    <h3>Opponent's Outfit</h3>
+                    <div class="item-selection" id="opponentOutfit"></div>
+                </div>
+            </div>
+            <h3>Available Items (Choose 3)</h3>
+            <div class="item-selection" id="availableItems"></div>
+            <button class="submit-btn" id="submitOutfit">Submit Outfit</button>
+            <div id="result"></div>
+        </div>
+    </main>
+
+    <div class="searching-overlay" style="display: none;">
+        <div class="searching-message">
+            <h2 id="searchStatus">Searching for an opponent...</h2>
+            <div class="countdown" id="countdown"></div>
+        </div>
+    </div>
+
+    <div class="firework-container" style="display: none;">
+        <div class="firework"></div>
+        <div class="firework"></div>
+        <div class="firework"></div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Myntra. All rights reserved.</p>
+    </footer>
+
+    <script>
+        const scenarios = ['Beach Wedding', 'Job Interview', 'First Date', 'Music Festival', 'Winter Gala'];
+        const items = [
+            { id: 1, name: 'Blue Jeans', type: 'bottom', image: 'https://example.com/blue-jeans.jpg' },
+            { id: 2, name: 'White T-Shirt', type: 'top', image: 'https://example.com/white-tshirt.jpg' },
+            { id: 3, name: 'Black Dress', type: 'full', image: 'https://example.com/black-dress.jpg' },
+            { id: 4, name: 'Sneakers', type: 'shoes', image: 'https://example.com/sneakers.jpg' },
+            { id: 5, name: 'Suit Jacket', type: 'top', image: 'https://example.com/suit-jacket.jpg' },
+            { id: 6, name: 'Dress Shoes', type: 'shoes', image: 'https://example.com/dress-shoes.jpg' },
+        ];
+
+        let playerOutfit = [];
+        let opponentOutfit = [];
+        let timeLeft = 60;
+        let timerInterval;
+        let currentScenario;
+        let countdownInterval;
+
+        document.getElementById('startPlaying').addEventListener('click', startMatchmaking);
+
+        function startMatchmaking() {
+            document.querySelector('.searching-overlay').style.display = 'flex';
+            let searchTime = 5; // Simulating a 5-second search
+            
+            countdownInterval = setInterval(() => {
+                document.getElementById('countdown').textContent = searchTime;
+                searchTime--;
+                
+                if (searchTime < 0) {
+                    clearInterval(countdownInterval);
+                    document.getElementById('searchStatus').textContent = 'Opponent found!';
+                    document.getElementById('countdown').textContent = 'Starting in 10 seconds...';
+                    
+                    setTimeout(() => {
+                        document.querySelector('.searching-overlay').style.display = 'none';
+                        document.getElementById('startPlaying').style.display = 'none';
+                        document.querySelector('.game-container').style.display = 'block';
+                        startGame();
+                    }, 10000);
+                }
+            }, 1000);
+        }
+
+        function startGame() {
+            playerOutfit = [];
+            opponentOutfit = [];
+            timeLeft = 60;
+            currentScenario = scenarios[Math.floor(Math.random() * scenarios.length)];
+            document.getElementById('scenario').textContent = currentScenario;
+            document.getElementById('playerOutfit').innerHTML = '';
+            document.getElementById('opponentOutfit').innerHTML = '';
+            document.getElementById('result').textContent = '';
+            loadAvailableItems();
+            startTimer();
+        }
+
+        function loadAvailableItems() {
+            const availableItemsContainer = document.getElementById('availableItems');
+            availableItemsContainer.innerHTML = '';
+            items.forEach(item => {
+                const itemElement = document.createElement('img');
+                itemElement.src = item.image;
+                itemElement.alt = item.name;
+                itemElement.className = 'item';
+                itemElement.dataset.id = item.id;
+                itemElement.onclick = () => selectItem(itemElement);
+                availableItemsContainer.appendChild(itemElement);
+            });
+        }
+
+        function selectItem(itemElement) {
+            if (playerOutfit.length < 3 && !itemElement.classList.contains('selected')) {
+                itemElement.classList.add('selected');
+                playerOutfit.push(items.find(item => item.id === parseInt(itemElement.dataset.id)));
+                updateOutfitDisplay('playerOutfit', playerOutfit);
+            } else if (itemElement.classList.contains('selected')) {
+                itemElement.classList.remove('selected');
+                playerOutfit = playerOutfit.filter(item => item.id !== parseInt(itemElement.dataset.id));
+                updateOutfitDisplay('playerOutfit', playerOutfit);
+            }
+        }
+
+        function updateOutfitDisplay(containerId, outfit) {
+            const container = document.getElementById(containerId);
+            container.innerHTML = '';
+            outfit.forEach(item => {
+                const itemElement = document.createElement('img');
+                itemElement.src = item.image;
+                itemElement.alt = item.name;
+                itemElement.className = 'item';
+                container.appendChild(itemElement);
+            });
+        }
+
+        function startTimer() {
+            timerInterval = setInterval(() => {
+                timeLeft--;
+                document.getElementById('timer').textContent = formatTime(timeLeft);
+                if (timeLeft <= 0) {
+                    clearInterval(timerInterval);
+                    submitOutfit();
+                }
+            }, 1000);
+        }
+
+        function formatTime(seconds) {
+            const minutes = Math.floor(seconds / 60);
+            const remainingSeconds = seconds % 60;
+            return `${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`;
+        }
+
+        function submitOutfit() {
+            clearInterval(timerInterval);
+            generateOpponentOutfit();
+            calculateResult();
+        }
+
+        function generateOpponentOutfit() {
+            opponentOutfit = [];
+            for (let i = 0; i < 3; i++) {
+                const randomItem = items[Math.floor(Math.random() * items.length)];
+                if (!opponentOutfit.some(item => item.id === randomItem.id)) {
+                    opponentOutfit.push(randomItem);
+                } else {
+                    i--;
+                }
+            }
+            updateOutfitDisplay('opponentOutfit', opponentOutfit);
+        }
+
+        function calculateResult() {
+            const playerScore = calculateOutfitScore(playerOutfit);
+            const opponentScore = calculateOutfitScore(opponentOutfit);
+            
+            let resultMessage;
+            if (playerScore > opponentScore) {
+                resultMessage = 'Congratulations! You win! 🎉🥳';
+                showFireworks();
+            } else if (playerScore < opponentScore) {
+                resultMessage = 'Nice try! Your opponent wins this round.';
+            } else {
+                resultMessage = "It's a tie! Both outfits are equally stylish.";
+            }
+            
+            document.getElementById('result').textContent = resultMessage;
+        }
+        function calculateOutfitScore(outfit) {
+            // This is a simplified scoring system. You can make it more complex based on the scenario.
+            return outfit.length * 10 + Math.random() * 20;
+        }
+
+        document.getElementById('submitOutfit').addEventListener('click', submitOutfit);
+
+        function showFireworks() {
+            const fireworkContainer = document.querySelector('.firework-container');
+            fireworkContainer.style.display = 'block';
+            setTimeout(() => {
+                fireworkContainer.style.display = 'none';
+            }, 3000); // Hide fireworks after 3 seconds
+        }
+
+        document.getElementById('submitOutfit').addEventListener('click', submitOutfit);
+    </script>
+</body>
+</html>
