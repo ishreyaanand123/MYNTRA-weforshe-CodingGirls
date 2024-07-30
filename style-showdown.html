@@ -320,7 +320,7 @@
                 if (searchTime < 0) {
                     clearInterval(countdownInterval);
                     document.getElementById('searchStatus').textContent = 'Opponent found!';
-                    document.getElementById('countdown').textContent = 'Starting in 10 seconds...';
+                    document.getElementById('countdown').textContent = 'Please wait';
                     
                     setTimeout(() => {
                         document.querySelector('.searching-overlay').style.display = 'none';
